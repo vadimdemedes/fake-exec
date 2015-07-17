@@ -20,6 +20,16 @@ describe ('fake-exec', function () {
     fake.clear();
   });
 
+  it ('with no arguments', function (done) {
+    fake('ls');
+
+    exec('ls', function (err, stdout, stderr) {
+      stdout.should.equal('');
+
+      done();
+    });
+  });
+
   it ('with an output string', function (done) {
     let output = 'steve angello rocks';
 

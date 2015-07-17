@@ -32,8 +32,8 @@ const fakes = [];
 
 function fake (command, callback) {
   // output string provided
-  if (typeof callback === 'string') {
-    let output = callback;
+  if (typeof callback === 'string' || !callback) {
+    let output = callback || '';
 
     callback = function (done) {
       done(null, output, null);

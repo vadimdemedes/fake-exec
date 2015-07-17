@@ -1,0 +1,38 @@
+{
+  "name": "fake-exec",
+  "version": "1.0.0",
+  "description": "Fake child_process#exec output",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vdemedes/fake-exec.git"
+  },
+  "keywords": [
+    "mock-exec",
+    "mock",
+    "exec",
+    "test",
+    "test-exec",
+    "fake"
+  ],
+  "author": "Vadim Demedes <vdemedes@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vdemedes/fake-exec/issues"
+  },
+  "homepage": "https://github.com/vdemedes/fake-exec#readme",
+  "dependencies": {
+    "array-find": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^3.1.0",
+    "make-lint-es6": "^1.0.3",
+    "mocha": "^2.2.5"
+  },
+  "files": [
+    "index.js"
+  ]
+}

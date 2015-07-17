@@ -1,6 +1,6 @@
 {
   "name": "fake-exec",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Fake child_process#exec output",
   "main": "index.js",
   "scripts": {

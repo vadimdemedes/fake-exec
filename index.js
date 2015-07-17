@@ -4,6 +4,7 @@
  * Dependencies
  */
 
+const remove = require('remove-value');
 const find = require('array-find');
 const ps = require('child_process');
 
@@ -50,6 +51,16 @@ function fake (command, callback) {
 
       done(err, null, null);
     };
+  }
+
+  let existingFake = find(fakes, function (fake) {
+    let fakeCommand = fake[0];
+
+    return fakeCommand === command;
+  });
+
+  if (existingFake) {
+    remove(fakes, existingFake);
   }
 
   fakes.push([command, callback]);

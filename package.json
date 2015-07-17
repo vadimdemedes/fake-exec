@@ -25,7 +25,8 @@
   },
   "homepage": "https://github.com/vdemedes/fake-exec#readme",
   "dependencies": {
-    "array-find": "^1.0.0"
+    "array-find": "^1.0.0",
+    "remove-value": "^1.0.0"
   },
   "devDependencies": {
     "chai": "^3.1.0",

@@ -68,6 +68,27 @@ describe ('fake-exec', function () {
     });
   });
 
+  it ('override previous fake', function (done) {
+    let outputs = [
+      'steve angello rocks',
+      'axwell rocks'
+    ];
+
+    fake('ls', outputs[0]);
+
+    exec('ls', function (err, stdout) {
+      stdout.should.equal(outputs[0]);
+
+      fake('ls', outputs[1]);
+
+      exec('ls', function (err, stdout) {
+        stdout.should.equal(outputs[1]);
+
+        done();
+      });
+    });
+  });
+
   it ('skip', function (done) {
     exec('ls', function (err, stdout, stderr) {
       stdout.should.not.equal('steve angello rocks');

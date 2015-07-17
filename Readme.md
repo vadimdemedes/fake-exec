@@ -1,4 +1,4 @@
-# fake-exec
+# fake-exec [![Circle CI](https://circleci.com/gh/vdemedes/fake-exec.svg?style=svg)](https://circleci.com/gh/vdemedes/fake-exec)
 
 Fake child_process#exec output for testing.
 
@@ -29,6 +29,8 @@ exec('rm -rf /', function (err, stdout) {
 Check out tests (they look good) for more examples.
 
 ### Tests
+
+[![Circle CI](https://circleci.com/gh/vdemedes/fake-exec.svg?style=svg)](https://circleci.com/gh/vdemedes/fake-exec)
 
 ```
 $ make test

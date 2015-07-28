@@ -30,7 +30,8 @@
   },
   "devDependencies": {
     "chai": "^3.1.0",
-    "make-lint-es6": "^1.0.3",
+    "istanbul-harmony": "^0.3.16",
+    "make-lint": "vdemedes/make-lint",
     "mocha": "^2.2.5"
   },
   "files": [

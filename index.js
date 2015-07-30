@@ -47,6 +47,7 @@ function fake (command, callback) {
 
     callback = function (done) {
       let err = new Error();
+      
       err.code = exitCode;
 
       done(err, null, null);
@@ -80,7 +81,16 @@ function clear () {
  * Monkey-patch child_process#exec
  */
 
-ps.exec = function (requestedCommand, callback) {
+ps.exec = function (requestedCommand, options, callback) {
+  if (typeof options === 'function') {
+    callback = options;
+    options = {};
+  }
+
+  if (typeof callback !== 'function') {
+    callback = noop;
+  }
+
   let fake = find(fakes, function (fake) {
     let fakeCommand = fake[0];
 
@@ -93,3 +103,10 @@ ps.exec = function (requestedCommand, callback) {
 
   fake[1](callback);
 };
+
+
+/**
+ * Helpers
+ */
+
+function noop () {}

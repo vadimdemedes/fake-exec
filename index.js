@@ -31,26 +31,40 @@ const fakes = [];
  * Add a fake response to collection
  */
 
-function fake (command, callback) {
-  // output string provided
-  if (typeof callback === 'string' || !callback) {
-    let output = callback || '';
-
-    callback = function (done) {
-      done(null, output, null);
-    };
+function fake (command, output, exitCode, callback) {
+  if (typeof exitCode === 'function') {
+    callback = exitCode;
+    exitCode = 0;
   }
 
-  // exit code provided
-  if (typeof callback === 'number') {
-    let exitCode = callback;
+  if (typeof output === 'function') {
+    callback = output;
+    output = '';
+  }
 
+  if (typeof output === 'number') {
+    exitCode = output;
+    output = '';
+  }
+
+  if (!exitCode) {
+    exitCode = 0;
+  }
+
+  if (!output) {
+    output = '';
+  }
+
+  if (!callback) {
     callback = function (done) {
-      let err = new Error();
-      
-      err.code = exitCode;
+      let err;
 
-      done(err, null, null);
+      if (exitCode > 0) {
+        err = new Error(output);
+        err.code = exitCode;
+      }
+
+      done(err, output, null);
     };
   }
 

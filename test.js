@@ -4,10 +4,9 @@
  * Dependencies
  */
 
+const expect = require('chai').expect;
 const fake = require('./');
 const exec = require('child_process').exec;
-
-require('chai').should();
 
 
 /**
@@ -24,7 +23,8 @@ describe ('fake-exec', function () {
     fake('ls');
 
     exec('ls', function (err, stdout, stderr) {
-      stdout.should.equal('');
+      expect(err).equal(undefined);
+      expect(stdout).equal('');
 
       done();
     });
@@ -36,7 +36,8 @@ describe ('fake-exec', function () {
     fake('ls', output);
 
     exec('ls', function (err, stdout, stderr) {
-      stdout.should.equal(output);
+      expect(err).equal(undefined);
+      expect(stdout).equal(output);
 
       done();
     });
@@ -47,8 +48,10 @@ describe ('fake-exec', function () {
 
     fake('ls', exitCode);
 
-    exec('ls', function (err) {
-      err.code.should.equal(exitCode);
+    exec('ls', function (err, stdout) {
+      expect(err instanceof Error).equal(true);
+      expect(err.code).equal(exitCode);
+      expect(stdout).equal('');
 
       done();
     });
@@ -62,7 +65,9 @@ describe ('fake-exec', function () {
     });
 
     exec('ls', function (err, stdout, stderr) {
-      stdout.should.equal(output);
+      expect(err).equal(null);
+      expect(stdout).equal(output);
+      expect(stderr).equal(null);
 
       done();
     });
@@ -77,12 +82,14 @@ describe ('fake-exec', function () {
     fake('ls', outputs[0]);
 
     exec('ls', function (err, stdout) {
-      stdout.should.equal(outputs[0]);
+      expect(err).equal(undefined);
+      expect(stdout).equal(outputs[0]);
 
       fake('ls', outputs[1]);
 
       exec('ls', function (err, stdout) {
-        stdout.should.equal(outputs[1]);
+        expect(err).equal(undefined);
+        expect(stdout).equal(outputs[1]);
 
         done();
       });
@@ -91,7 +98,7 @@ describe ('fake-exec', function () {
 
   it ('skip', function (done) {
     exec('ls', function (err, stdout, stderr) {
-      stdout.should.not.equal('steve angello rocks');
+      expect(stdout).not.equal('steve angello rocks');
 
       done();
     });

@@ -57,6 +57,21 @@ describe ('fake-exec', function () {
     });
   });
 
+  it ('with a custom exit code and output', function (done) {
+    let exitCode = 127;
+    let output = 'steve angello rocks';
+
+    fake('ls', output, exitCode);
+
+    exec('ls', function (err, stdout) {
+      expect(err instanceof Error).equal(true);
+      expect(err.code).equal(exitCode);
+      expect(stdout).equal(output);
+
+      done();
+    });
+  });
+
   it ('with a callback', function (done) {
     let output = 'steve angello rocks';
 
